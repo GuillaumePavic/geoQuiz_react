@@ -1,15 +1,21 @@
 import { Routes, Route} from 'react-router-dom';
-import HomePage from './components/HomePage';
 import Leaderboard from './components/Leaderboard';
-import Quizz from './components/Quizz';
+import QuizzPage from './components/QuizPage';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import React from 'react';
+import HomePage from './components/HomePage';
 
 
 const App: React.FC = () => (
-  <Routes>
-    <Route path="/leaderboard" element={<Leaderboard />}/>
-    <Route path="/quizz" element={<Quizz />}/>
-    <Route path="/" element={<HomePage />}/>  
-  </Routes>
+  <React.Fragment>
+    <Header/>
+    <Routes>
+      <Route path="/quiz" element={<QuizzPage />}/>
+      <Route path="/leaderboard" element={<Leaderboard />}/>
+      <Route path="/" element={<HomePage/>}/>
+    </Routes>
+  </React.Fragment>
 )
 
 export default App;
