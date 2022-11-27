@@ -1,15 +1,24 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Correction } from "../services/Quiz";
+import { Answer_Data } from "./Quiz";
+import Quiz from '../services/Quiz.service';
 
 interface Props {
-    corrections: Correction[],
-    playerScore: number
+    answers: Answer_Data[],
 }
 
-const Results: React.FC<Props> = ({ corrections, playerScore }) => {
+
+const Results: React.FC<Props> = ({ answers }) => {
+    const [totalScore, setTotalScore] = useState<number>();
+
+    // Calcul Player Score
+    useEffect(()=>{
+        setTotalScore(Quiz.calculScore(answers));
+    }, [])
+
     return (
         <div>
-            <div>Score: {playerScore}</div>
+            <div>Score: {totalScore}</div>
             <table>
                 <thead>
                     <tr>
@@ -19,11 +28,11 @@ const Results: React.FC<Props> = ({ corrections, playerScore }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {corrections.map( (correction) => ( 
-                        <tr key={correction.id}>
-                            <td>{correction.country}</td>
-                            <td>{correction.capital}</td>
-                            <td>{correction.player_answer}</td>
+                    {answers!.map( (answer: Answer_Data) => ( 
+                        <tr key={answer.id}>
+                            <td>{answer.country}</td>
+                            <td>{answer.capital}</td>
+                            <td>{answer.playerAnswer}</td>
                         </tr>                 
                     ) )}
                 </tbody>
