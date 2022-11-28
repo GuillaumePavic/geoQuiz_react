@@ -1,4 +1,6 @@
 import { Answer_Data, Quiz_data } from "../components/Quiz";
+import { Correction } from "../components/Results";
+
 
 export default class Quiz {
 
@@ -13,13 +15,16 @@ export default class Quiz {
     }
 
     static calculScore = (answers: Answer_Data[]) => {
-        console.log("calculScore =>", answers)
+        const corrections: Correction[] = [...answers];
         let score = 0;
-        for(let answer of answers) {
-            if(answer.playerAnswer.trim().toLowerCase() === answer.capital.trim().toLocaleLowerCase()) {
+        for(let correction of corrections) {
+            if(correction.playerAnswer.trim().toLowerCase() === correction.capital.trim().toLocaleLowerCase()) {
                 score++;
+                correction.display = "right";
+            } else {
+                correction.display = "wrong";
             }
-        }
-        return score;
+        }  
+        return {score, corrections};
     }
 }
