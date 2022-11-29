@@ -5,8 +5,11 @@ import Quiz from '../services/Quiz.service';
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-    height: 100%;
-    width: 100%;
+    border: 6px solid white;
+    border-radius: 12px;
+    width: 50vw;
+    min-height: 500px;
+    padding: 16px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -77,8 +80,8 @@ const Results: React.FC<Props> = ({ answers, totalQuestions }) => {
                         ) )}
                     </tbody>
                 </Table>
-                {/* <Link to={"/"}>Nouveau Quiz ?</Link> */}
-                <button>Click</button>
+                <Link to={"/quiz"}>Nouveau Quiz ?</Link>
+                {/* <button>Click</button> */}
                 </Wrapper>
             )}
         </React.Fragment>
