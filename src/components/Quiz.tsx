@@ -108,7 +108,7 @@ const Quiz: React.FC<Props> = ({ difficultyLevel }) => {
     return (
         <Wrapper>
             {endOfQuiz ? (
-                <Results answers={answers} totalQuestions={totalQuestions}/>
+                <Results answers={answers} totalQuestions={totalQuestions} />
             ) : (
                 <QuestionCard>
                     <QuestionNumber>{indexCurrentQuestion}/{totalQuestions}</QuestionNumber>

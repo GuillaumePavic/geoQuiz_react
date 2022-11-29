@@ -77,7 +77,8 @@ const Results: React.FC<Props> = ({ answers, totalQuestions }) => {
                         ) )}
                     </tbody>
                 </Table>
-                <Link to={"/"}>Nouveau Quiz ?</Link>
+                {/* <Link to={"/"}>Nouveau Quiz ?</Link> */}
+                <button>Click</button>
                 </Wrapper>
             )}
         </React.Fragment>
