@@ -1,6 +1,6 @@
 import { Answer_Data, Quiz_data } from "../components/Quiz";
 import { Correction } from "../components/Results";
-
+import data from '../data/data.json';
 
 export default class Quiz {
 
@@ -26,5 +26,36 @@ export default class Quiz {
             }
         }  
         return {score, corrections};
+    }
+
+    static listQuizs = () => {
+        const categories = [
+            "asie",
+            "europe",
+            "afrique",
+            "amerique"
+        ];
+
+        return categories;
+    }
+
+    static createQuizLocally = (level: string, category: string): Quiz_data[] => {
+        const n = 3;
+
+        // TODO: type data
+        const filteredData = data.filter(el => el.level === level && el.continent === category);
+
+        let randomizedData = [...filteredData].sort(() => 0.5 - Math.random());
+        randomizedData = randomizedData.slice(0, n);
+        
+        const formattedData: Quiz_data[] = randomizedData.map(el => {
+            return {
+                id: el.id, 
+                country: el.country, 
+                capital: el.capital               
+            }
+        })
+
+        return formattedData;
     }
 }

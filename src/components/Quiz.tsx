@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import LevelCard from "./LevelCard";
 import QuestionCard from "./QuestionCard";
 import Results from "./Results";
+import QuizServices from "../services/Quiz.service";
 
 export interface Quiz_data {
     id: number,
@@ -14,13 +15,13 @@ export interface Answer_Data extends Quiz_data {
 }
 
 const Quiz: React.FC = () => {
-    const [ difficultyLevel, setDifficultyLevel ] = useState<string>();
+    const [difficultyLevel, setDifficultyLevel] = useState<string>();
+    const [totalQuestions, setTotalQuestions] = useState<number>();
     const [quizData, setQuizData] = useState<Quiz_data[]>();
     const [currentQuestion, setCurrentQuestion] = useState<Quiz_data>();
+    const [indexCurrentQuestion, setIndexCurrentQuestion] = useState(1);
     const [answers, setAnswers] = useState<Answer_Data[]>([]);
     const [endOfQuiz, setEndOfQuiz] = useState(false);
-    const [totalQuestions, setTotalQuestions] = useState<number>();
-    const [indexCurrentQuestion, setIndexCurrentQuestion] = useState(1);
 
     // Handle User Input
     const handleAnswerSubmit = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -33,10 +34,7 @@ const Quiz: React.FC = () => {
                 playerAnswer: currentAnswer
             };
 
-            setAnswers([
-                ...answers,
-                answerData
-            ]);
+            setAnswers([...answers, answerData]);
 
             // Change state to next question or end quiz
             const currentIndex = quizData?.indexOf(currentQuestion!);
@@ -50,11 +48,7 @@ const Quiz: React.FC = () => {
     }
 
     const handleChooseClick = (level: string) => {
-        console.log(difficultyLevel);
-        const data = [
-            {id: 1, capital: "Paris", country:"France"},
-            {id: 2, capital: "Londres", country:"Royaume-Unis"}
-        ]; 
+        const data = QuizServices.createQuizLocally(level, "asie");
         setQuizData(data);
         setCurrentQuestion(data[0]);
         setTotalQuestions(data.length);
