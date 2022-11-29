@@ -54,7 +54,7 @@ export default class Quiz {
                 country: el.country, 
                 capital: el.capital               
             }
-        })
+        });
 
         return formattedData;
     }
