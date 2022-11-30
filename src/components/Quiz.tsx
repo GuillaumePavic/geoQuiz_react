@@ -4,16 +4,8 @@ import QuestionCard from "./QuestionCard";
 import Results from "./Results";
 import QuizServices from "../services/Quiz.service";
 import { useParams } from 'react-router-dom';
-
-export interface Quiz_data {
-    id: number,
-    country: string,
-    capital: string
-}
-
-export interface Answer_Data extends Quiz_data {
-    playerAnswer: string,
-}
+import Answer_Data from "../models/Answer_data.interface";
+import Quiz_data from "../models/Quiz_data.interface";
 
 const Quiz: React.FC = () => {
     const [difficultyLevel, setDifficultyLevel] = useState<string>();

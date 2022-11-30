@@ -1,6 +1,7 @@
-import { Answer_Data, Quiz_data } from "../components/Quiz";
-import { Correction } from "../components/Results";
 import data from '../data/data.json';
+import Answer_data from '../models/Answer_data.interface';
+import Correction_data from '../models/Correction_data.interface';
+import Quiz_data from '../models/Quiz_data.interface';
 
 export default class Quiz {
 
@@ -14,8 +15,8 @@ export default class Quiz {
         return data;
     }
 
-    static calculScore = (answers: Answer_Data[]) => {
-        const corrections: Correction[] = [...answers];
+    static calculScore = (answers: Answer_data[]) => {
+        const corrections: Correction_data[] = [...answers];
         let score = 0;
         for(let correction of corrections) {
             if(correction.playerAnswer.trim().toLowerCase() === correction.capital.trim().toLocaleLowerCase()) {

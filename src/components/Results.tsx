@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Answer_Data } from "./Quiz";
 import Quiz from '../services/Quiz.service';
 import styled from "styled-components";
+import Answer_Data from "../models/Answer_data.interface";
+import Correction_data from "../models/Correction_data.interface";
 
 const Wrapper = styled.div`
     border: 6px solid white;
@@ -15,10 +16,6 @@ const Wrapper = styled.div`
     justify-content: space-around;
     align-items: center;
     font-size: 1.5rem;
-`;
-
-const Score = styled.div`
-
 `;
 
 const Table = styled.table`
@@ -40,13 +37,9 @@ interface Props {
     totalQuestions: number | undefined
 }
 
-export interface Correction extends Answer_Data {
-    display?: string;
-}
-
 const Results: React.FC<Props> = ({ answers, totalQuestions }) => {
     const [totalScore, setTotalScore] = useState<number>();
-    const [corrections, setCorrections] = useState<Correction[]>();
+    const [corrections, setCorrections] = useState<Correction_data[]>();
 
     // Calcul Player Score
     useEffect(()=>{
@@ -61,7 +54,7 @@ const Results: React.FC<Props> = ({ answers, totalQuestions }) => {
                 <Wrapper><div>Check results</div></Wrapper>  
             ) : (
                 <Wrapper>
-                <Score>Score: {totalScore}/{totalQuestions}</Score>
+                <div>Score: {totalScore}/{totalQuestions}</div>
                 <Table>
                     <thead>
                         <tr>
@@ -71,7 +64,7 @@ const Results: React.FC<Props> = ({ answers, totalQuestions }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {corrections!.map( (correction: Correction) => ( 
+                        {corrections!.map( (correction: Correction_data) => ( 
                             <TR key={correction.id} className={correction.display}>
                                 <td>{correction.country}</td>
                                 <td>{correction.capital}</td>
