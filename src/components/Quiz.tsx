@@ -3,6 +3,7 @@ import LevelCard from "./LevelCard";
 import QuestionCard from "./QuestionCard";
 import Results from "./Results";
 import QuizServices from "../services/Quiz.service";
+import { useParams } from 'react-router-dom';
 
 export interface Quiz_data {
     id: number,
@@ -47,8 +48,9 @@ const Quiz: React.FC = () => {
         }
     }
 
+    let { quizId } = useParams();
     const handleChooseClick = (level: string) => {
-        const data = QuizServices.createQuizLocally(level, "asie");
+        const data = QuizServices.createQuizLocally(level, quizId!);
         setQuizData(data);
         setCurrentQuestion(data[0]);
         setTotalQuestions(data.length);

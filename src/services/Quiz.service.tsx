@@ -28,12 +28,12 @@ export default class Quiz {
         return {score, corrections};
     }
 
-    static listQuizs = () => {
+    static listQuizsLocally = () => {
         const categories = [
-            "asie",
-            "europe",
-            "afrique",
-            "amerique"
+            {id: 1,continent: "asie"},
+            {id: 2,continent: "europe"},
+            {id: 3,continent: "afrique"},
+            {id: 4,continent: "amerique"}
         ];
 
         return categories;
