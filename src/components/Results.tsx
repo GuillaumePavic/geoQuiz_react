@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Quiz from '../services/Quiz.service';
 import styled from "styled-components";
-import Answer_Data from "../models/Answer_data.interface";
-import Correction_data from "../models/Correction_data.interface";
+import Answer_Data from "../Interfaces/Answer_data.interface";
+import Correction_data from "../Interfaces/Correction_data.interface";
+import Leaderboard_data from "../Interfaces/Leaderboard_data.interface";
 
 const Wrapper = styled.div`
     border: 6px solid white;
@@ -23,6 +24,27 @@ const Table = styled.table`
     width: 100%
 `;
 
+const Score = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & input {
+        font-family: TitiliumRegular, sans-serif;
+        text-align: center;
+    }
+`;
+
+const Button = styled.button`
+    font-size: 0.5em;
+    padding: 0.25em 1em;
+    background: inherit;
+    color: white;
+    border-radius: 3px;
+    &:hover {
+        cursor: pointer;
+    }
+`;
+
 const TR = styled.tr`
     &.right {
         background: green;
@@ -40,6 +62,8 @@ interface Props {
 const Results: React.FC<Props> = ({ answers, totalQuestions }) => {
     const [totalScore, setTotalScore] = useState<number>();
     const [corrections, setCorrections] = useState<Correction_data[]>();
+    const [displaySaveScore, setDisplaySaveScore] = useState(false);
+    const [scoreSaved, setScoreSaved] = useState(false);
 
     // Calcul Player Score
     useEffect(()=>{
@@ -48,13 +72,56 @@ const Results: React.FC<Props> = ({ answers, totalQuestions }) => {
         setCorrections(corrections);
     }, []);
 
+    const handleDisplaySaveInput = (): void => {
+        setDisplaySaveScore(true);
+    }
+
+    const handleSaveUserName = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+        if(e.key === 'Enter') {
+            const username: string = e.currentTarget.value;
+            
+            const leaderboardData = {
+                username,
+                totalScore
+            };
+
+            const currentLeaderboard = JSON.parse(localStorage.getItem('leaderboard') || '[]');
+
+            let newLeaderboard = [
+                ...currentLeaderboard,
+                leaderboardData
+            ];
+
+            // Keep 3 scores only in leaderboard
+            if(newLeaderboard.length > 3) {
+                newLeaderboard.sort((p1: Leaderboard_data, p2: Leaderboard_data) => {
+                    return p2.totalScore - p1.totalScore;
+                });
+            }
+            console.log(newLeaderboard)
+            newLeaderboard = newLeaderboard.slice(0, 3);
+
+            localStorage.setItem('leaderboard', JSON.stringify(newLeaderboard));
+            setScoreSaved(true);
+        }
+    }
     return (
         <React.Fragment>
             { (!totalScore && totalScore !== 0) ? (
-                <Wrapper><div>Check results</div></Wrapper>  
+                <Wrapper><div>Calcul du Score...</div></Wrapper>  
             ) : (
                 <Wrapper>
-                <div>Score: {totalScore}/{totalQuestions}</div>
+                <Score>
+                    <div> Score: {totalScore}/{totalQuestions}</div>
+                    {!displaySaveScore && (<Button onClick={()=>{handleDisplaySaveInput()}}>Enregistrez votre Score ?</Button>)}
+                    {displaySaveScore && (
+                        <div>
+                            {!scoreSaved 
+                            ? (<input type="text" placeholder="Entrez votre nom" autoFocus onKeyDown={(e)=>{ handleSaveUserName(e) } }/>) 
+                            : (<Link to={"/classement"}>Classement</Link>)}
+                        </div>
+                    )}
+                </Score>
                 <Table>
                     <thead>
                         <tr>
@@ -74,7 +141,6 @@ const Results: React.FC<Props> = ({ answers, totalQuestions }) => {
                     </tbody>
                 </Table>
                 <Link to={"/quiz"}>Nouveau Quiz ?</Link>
-                {/* <button>Click</button> */}
                 </Wrapper>
             )}
         </React.Fragment>
@@ -83,7 +149,8 @@ const Results: React.FC<Props> = ({ answers, totalQuestions }) => {
 
 export default Results;
 
-// background: ${props => {
-//     if(props['data-display'] === "wrong") return "palevioletred";
-//     if(props['data-display'] === "right") return "green";
-// }};
+{/* <button>Enregistrez votre Score</button>
+<div>
+    <input type="text" placeholder="Entrez votre nom" onClick={()=>{ handleUserName(e) }}/>
+    <div>Link to Leaderboard</div>
+</div> */}

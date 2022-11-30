@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Quiz_data } from './Quiz';
+import Quiz_data from '../Interfaces/Quiz_data.interface';
+
 
 // const Wrapper = styled.div`
 //     border: 6px solid white;

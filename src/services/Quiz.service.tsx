@@ -1,7 +1,7 @@
 import data from '../data/data.json';
-import Answer_data from '../models/Answer_data.interface';
-import Correction_data from '../models/Correction_data.interface';
-import Quiz_data from '../models/Quiz_data.interface';
+import Answer_data from '../Interfaces/Answer_data.interface';
+import Correction_data from '../Interfaces/Correction_data.interface';
+import Quiz_data from '../Interfaces/Quiz_data.interface';
 
 export default class Quiz {
 

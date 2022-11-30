@@ -16,7 +16,7 @@ const FooterComponent: React.FC = () => {
     return(
         <Footer>
             <div>
-                <Link to={'leaderBoard'}>Classement</Link>
+                <Link to={'/classement'}>Classement</Link>
             </div>
         </Footer>
     )

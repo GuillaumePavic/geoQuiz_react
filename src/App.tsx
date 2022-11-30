@@ -22,7 +22,7 @@ const App: React.FC = () => (
     <Header/>
     <Main>
       <Routes>
-        <Route path="/leaderboard" element={<Leaderboard />}/>
+        <Route path="/classement" element={<Leaderboard />}/>
         <Route path="/quiz">
           <Route index element={<Quizs />}/>
           <Route path=':quizId' element={<Quiz/>}/>    
