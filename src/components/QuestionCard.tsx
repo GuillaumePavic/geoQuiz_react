@@ -69,18 +69,21 @@ const QuestionCard: React.FC<Props> = ({
 
     // const answerInput = useRef(null);
     const [answerInput, setAnswerInput]= useState('');
+
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setAnswerInput(e.currentTarget.value);
     };
 
     const answerRef = useRef(answerInput);
     answerRef.current = answerInput;
+    
+    const el = useRef(null)
 
     useEffect(()=>{
         const timer = setTimeout(() =>{
             handleAnswerTimer(answerRef.current); 
-            setAnswerInput('')
-        }, 3000);
+            el.current.value = '';
+        }, 10000);
 
         return () => clearTimeout(timer);
     }, [indexCurrentQuestion]);
@@ -90,7 +93,7 @@ const QuestionCard: React.FC<Props> = ({
             <QuestionNumber>{indexCurrentQuestion}/{totalQuestions}</QuestionNumber>
             <Question>
                 <Label>{currentQuestion?.country.toUpperCase()}</Label>
-                <Input value={answerInput} onChange={(e)=>{handleOnChange(e)}} type="text" onKeyDown={ (e) => {handleAnswerSubmit(e)}} autoFocus />
+                <Input ref={el} onChange={(e)=>{handleOnChange(e)}} type="text" onKeyDown={ (e) => {handleAnswerSubmit(e)}} autoFocus />
             </Question>
         </QuestionWrapper>
     )

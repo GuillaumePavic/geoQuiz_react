@@ -44,18 +44,13 @@ const Quiz: React.FC = () => {
     // Handle User Input
     const handleAnswerSubmit = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
-            
-            // Get Input Value
-            const currentAnswer: string = e.currentTarget.value;
+            const currentAnswer = e.currentTarget.value;
             handleAnswer(currentAnswer);
-            
-            // Clean Input
             e.currentTarget.value = '';
         }
     }
 
     const handleAnswerTimer = (currentAnswer: string) => {
-        const origine = "timer"
         handleAnswer(currentAnswer);
     }
 
