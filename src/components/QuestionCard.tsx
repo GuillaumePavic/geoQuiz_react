@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import Quiz_data from '../Interfaces/Quiz_data.interface';
 
@@ -67,23 +67,30 @@ const QuestionCard: React.FC<Props> = ({
     handleAnswerTimer
 }) =>{
 
-    const answerInput = useRef(null);
+    // const answerInput = useRef(null);
+    const [answerInput, setAnswerInput]= useState('');
+    const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setAnswerInput(e.currentTarget.value);
+    };
+
+    const answerRef = useRef(answerInput);
+    answerRef.current = answerInput;
+
     useEffect(()=>{
-        // answerInput.current = "";
         const timer = setTimeout(() =>{
-            handleAnswerTimer(answerInput.current.value); 
-        }, 3000)
+            handleAnswerTimer(answerRef.current); 
+            setAnswerInput('')
+        }, 3000);
+
         return () => clearTimeout(timer);
-    }, [indexCurrentQuestion])
-
-
+    }, [indexCurrentQuestion]);
 
     return (
         <QuestionWrapper>
             <QuestionNumber>{indexCurrentQuestion}/{totalQuestions}</QuestionNumber>
             <Question>
                 <Label>{currentQuestion?.country.toUpperCase()}</Label>
-                <Input ref={answerInput} type="text" onKeyDown={ (e) => {handleAnswerSubmit(e)}} autoFocus />
+                <Input value={answerInput} onChange={(e)=>{handleOnChange(e)}} type="text" onKeyDown={ (e) => {handleAnswerSubmit(e)}} autoFocus />
             </Question>
         </QuestionWrapper>
     )
