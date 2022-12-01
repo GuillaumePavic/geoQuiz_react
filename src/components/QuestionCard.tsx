@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import Quiz_data from '../Interfaces/Quiz_data.interface';
 
@@ -56,20 +56,34 @@ interface Props {
     totalQuestions: number | undefined,
     indexCurrentQuestion: number,
     handleAnswerSubmit: (e: React.KeyboardEvent<HTMLInputElement>) => void
+    handleAnswerTimer: (arg0: string) => void
 }
 
 const QuestionCard: React.FC<Props> = ({
     currentQuestion, 
     totalQuestions, 
     indexCurrentQuestion,  
-    handleAnswerSubmit
+    handleAnswerSubmit,
+    handleAnswerTimer
 }) =>{
+
+    const answerInput = useRef(null);
+    useEffect(()=>{
+        // answerInput.current = "";
+        const timer = setTimeout(() =>{
+            handleAnswerTimer(answerInput.current.value); 
+        }, 3000)
+        return () => clearTimeout(timer);
+    }, [indexCurrentQuestion])
+
+
+
     return (
         <QuestionWrapper>
             <QuestionNumber>{indexCurrentQuestion}/{totalQuestions}</QuestionNumber>
             <Question>
                 <Label>{currentQuestion?.country.toUpperCase()}</Label>
-                <Input type="text" onKeyDown={ (e) => {handleAnswerSubmit(e)}} autoFocus />
+                <Input ref={answerInput} type="text" onKeyDown={ (e) => {handleAnswerSubmit(e)}} autoFocus />
             </Question>
         </QuestionWrapper>
     )

@@ -16,30 +16,7 @@ const Quiz: React.FC = () => {
     const [answers, setAnswers] = useState<Answer_Data[]>([]);
     const [endOfQuiz, setEndOfQuiz] = useState(false);
 
-    // Handle User Input
-    const handleAnswerSubmit = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter') {
-            
-            // Get Input Value
-            const currentAnswer: string = e.currentTarget.value;
-            const answerData: Answer_Data = {
-                ...currentQuestion!,
-                playerAnswer: currentAnswer
-            };
-
-            setAnswers([...answers, answerData]);
-
-            // Change state to next question or end quiz
-            const currentIndex = quizData?.indexOf(currentQuestion!);
-            if(currentIndex === quizData!.length - 1)  return setEndOfQuiz(true);
-            setCurrentQuestion(quizData![currentIndex! + 1]);
-            setIndexCurrentQuestion(prev => prev + 1);
-            
-            // Clean Input
-            e.currentTarget.value = '';
-        }
-    }
-
+    // Choose Level
     let { quizId } = useParams();
     const handleChooseClick = (level: string) => {
         const data = QuizServices.createQuizLocally(level, quizId!);
@@ -47,6 +24,39 @@ const Quiz: React.FC = () => {
         setCurrentQuestion(data[0]);
         setTotalQuestions(data.length);
         setDifficultyLevel(level);
+    }
+
+    const handleAnswer = (currentAnswer: string) => {
+        const answerData: Answer_Data = {
+            ...currentQuestion!,
+            playerAnswer: currentAnswer
+        };
+
+        setAnswers([...answers, answerData]);
+
+        // Change state to next question or end quiz
+        const currentIndex = quizData?.indexOf(currentQuestion!);
+        if(currentIndex === quizData!.length - 1)  return setEndOfQuiz(true);
+        setCurrentQuestion(quizData![currentIndex! + 1]);
+        setIndexCurrentQuestion(prev => prev + 1);
+    }
+
+    // Handle User Input
+    const handleAnswerSubmit = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            
+            // Get Input Value
+            const currentAnswer: string = e.currentTarget.value;
+            handleAnswer(currentAnswer);
+            
+            // Clean Input
+            e.currentTarget.value = '';
+        }
+    }
+
+    const handleAnswerTimer = (currentAnswer: string) => {
+        const origine = "timer"
+        handleAnswer(currentAnswer);
     }
 
     return (
@@ -62,6 +72,7 @@ const Quiz: React.FC = () => {
                             indexCurrentQuestion={indexCurrentQuestion}  
                             currentQuestion={currentQuestion}
                             handleAnswerSubmit={handleAnswerSubmit}
+                            handleAnswerTimer={handleAnswerTimer}
                         />
                     )}
 
