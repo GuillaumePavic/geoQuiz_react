@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import Quiz_data from '../Interfaces/Quiz_data.interface';
 
 
@@ -61,12 +61,13 @@ const ProgressBarContainer = styled.div`
     background:white;
 `;
 
-const ProgressBarAnimation = keyframes`
+const ProgressBarKeyframes = keyframes`
     100% { transform: scaleX(0); background:red;}
     50%  { background:orange;}
     0%   { transform: scaleX(1); background:green;}
 `;
 
+const ProgressBarAnimation = css`10s linear 1 ${ProgressBarKeyframes}`;
 const ProgressBar = styled.div`
     height:100%;
     text-align:right;
@@ -76,7 +77,7 @@ const ProgressBar = styled.div`
     border-bottom-right-radius:4px;
     line-height:30px;
     color:#444;
-    animation: 10s linear 1 ${ProgressBarAnimation};	
+    animation: ${ProgressBarAnimation};
 `;
 
 interface Props {
@@ -84,7 +85,8 @@ interface Props {
     totalQuestions: number | undefined,
     indexCurrentQuestion: number,
     handlePlayerSubmit: (e: React.KeyboardEvent<HTMLInputElement>) => void
-    handleTimerSubmit: (arg0: string) => void
+    handleTimerSubmit: (arg: string) => void,
+    // handleOnChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const QuestionCard: React.FC<Props> = ({
@@ -92,22 +94,25 @@ const QuestionCard: React.FC<Props> = ({
     totalQuestions, 
     indexCurrentQuestion,  
     handlePlayerSubmit,
-    handleTimerSubmit
+    handleTimerSubmit,
+    // handleOnChange
 }) =>{
 
     // Save input value on change, and use a ref to closure its value for the timer
-    const [answerInput, setAnswerInput]= useState('');
-    const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => setAnswerInput(e.currentTarget.value);
-    const answerRef = useRef(answerInput);
-    answerRef.current = answerInput;
+    // const [answerInput, setAnswerInput]= useState('');
+    // // const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => setAnswerInput(e.currentTarget.value);
+    // const answerRef = useRef(answerInput);
+    // answerRef.current = answerInput;
     
     const inputElement = useRef<HTMLInputElement>(null);
 
     useEffect(()=>{
+        
         const timer = setTimeout(() =>{
             // handleTimerSubmit(answerRef.current); 
+            handleTimerSubmit(inputElement.current!.value); 
             inputElement.current!.value = '';
-        }, 1000);
+        }, 2000);
 
         return () => clearTimeout(timer);
     }, [indexCurrentQuestion]);
@@ -120,12 +125,12 @@ const QuestionCard: React.FC<Props> = ({
                 <Input 
                     type="text" 
                     ref={inputElement} 
-                    onChange={(e)=>{handleOnChange(e)}} 
+                    // onChange={(e)=>{handleOnChange(inputElement)}} 
                     onKeyDown={ (e) => {handlePlayerSubmit(e)}} 
                     autoFocus 
                 />
             <ProgressBarContainer>
-                <ProgressBar></ProgressBar>
+                <ProgressBar key={Math.random()}></ProgressBar>
             </ProgressBarContainer>
             </Question>
         </QuestionWrapper>

@@ -18,6 +18,10 @@ const Quiz: React.FC = () => {
     const [answers, setAnswers] = useState<Answer_Data[]>([]);
     const [endOfQuiz, setEndOfQuiz] = useState(false);
 
+    // const [inputValue, setInputValue] = useState('');
+    // const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => setInputValue(e.currentTarget.value);
+
+
     // Choose Level and set data for Quiz
     let { quizId } = useParams();
     const handleChooseClick = (level: string) => {
@@ -52,7 +56,7 @@ const Quiz: React.FC = () => {
         }
     }
 
-    const handleTimerSubmit = (currentAnswer: string) => saveAnswer(currentAnswer);
+    const handleTimerSubmit = (inputValue: string) => saveAnswer(inputValue);
 
     return (
         <React.Fragment>
@@ -67,6 +71,7 @@ const Quiz: React.FC = () => {
                             currentQuestion={currentQuestion}
                             handlePlayerSubmit={handlePlayerSubmit}
                             handleTimerSubmit={handleTimerSubmit}
+                            // handleOnChange={handleOnChange}
                         />
                     )}
                     {endOfQuiz && (
