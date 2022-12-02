@@ -8,7 +8,9 @@ import Answer_Data from "../Interfaces/Answer_data.interface";
 import Quiz_data from "../Interfaces/Quiz_data.interface";
 
 const Quiz: React.FC = () => {
+    // Choose Level
     const [difficultyLevel, setDifficultyLevel] = useState<string>();
+    // Quiz
     const [totalQuestions, setTotalQuestions] = useState<number>();
     const [quizData, setQuizData] = useState<Quiz_data[]>();
     const [currentQuestion, setCurrentQuestion] = useState<Quiz_data>();
@@ -16,7 +18,7 @@ const Quiz: React.FC = () => {
     const [answers, setAnswers] = useState<Answer_Data[]>([]);
     const [endOfQuiz, setEndOfQuiz] = useState(false);
 
-    // Choose Level
+    // Choose Level and set data for Quiz
     let { quizId } = useParams();
     const handleChooseClick = (level: string) => {
         const data = QuizServices.createQuizLocally(level, quizId!);
@@ -26,7 +28,8 @@ const Quiz: React.FC = () => {
         setDifficultyLevel(level);
     }
 
-    const handleAnswer = (currentAnswer: string) => {
+    // Quiz
+    const saveAnswer = (currentAnswer: string) => {
         const answerData: Answer_Data = {
             ...currentQuestion!,
             playerAnswer: currentAnswer
@@ -41,18 +44,15 @@ const Quiz: React.FC = () => {
         setIndexCurrentQuestion(prev => prev + 1);
     }
 
-    // Handle User Input
-    const handleAnswerSubmit = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const handlePlayerSubmit = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
             const currentAnswer = e.currentTarget.value;
-            handleAnswer(currentAnswer);
+            saveAnswer(currentAnswer);
             e.currentTarget.value = '';
         }
     }
 
-    const handleAnswerTimer = (currentAnswer: string) => {
-        handleAnswer(currentAnswer);
-    }
+    const handleTimerSubmit = (currentAnswer: string) => saveAnswer(currentAnswer);
 
     return (
         <React.Fragment>
@@ -60,21 +60,18 @@ const Quiz: React.FC = () => {
                 <LevelCard handleChooseClick={handleChooseClick}/>
             ) : (
                 <React.Fragment>
-
                     {!endOfQuiz && (
                         <QuestionCard 
                             totalQuestions={totalQuestions} 
                             indexCurrentQuestion={indexCurrentQuestion}  
                             currentQuestion={currentQuestion}
-                            handleAnswerSubmit={handleAnswerSubmit}
-                            handleAnswerTimer={handleAnswerTimer}
+                            handlePlayerSubmit={handlePlayerSubmit}
+                            handleTimerSubmit={handleTimerSubmit}
                         />
                     )}
-
                     {endOfQuiz && (
                         <Results answers={answers} totalQuestions={totalQuestions}/>
                     )}
-
                 </React.Fragment>
             )}
         </React.Fragment>

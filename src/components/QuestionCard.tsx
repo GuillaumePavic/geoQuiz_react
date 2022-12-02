@@ -55,34 +55,30 @@ interface Props {
     currentQuestion: Quiz_data | undefined,
     totalQuestions: number | undefined,
     indexCurrentQuestion: number,
-    handleAnswerSubmit: (e: React.KeyboardEvent<HTMLInputElement>) => void
-    handleAnswerTimer: (arg0: string) => void
+    handlePlayerSubmit: (e: React.KeyboardEvent<HTMLInputElement>) => void
+    handleTimerSubmit: (arg0: string) => void
 }
 
 const QuestionCard: React.FC<Props> = ({
     currentQuestion, 
     totalQuestions, 
     indexCurrentQuestion,  
-    handleAnswerSubmit,
-    handleAnswerTimer
+    handlePlayerSubmit,
+    handleTimerSubmit
 }) =>{
 
-    // const answerInput = useRef(null);
+    // Save input value on change, and use a ref to closure its value for the timer
     const [answerInput, setAnswerInput]= useState('');
-
-    const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setAnswerInput(e.currentTarget.value);
-    };
-
+    const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => setAnswerInput(e.currentTarget.value);
     const answerRef = useRef(answerInput);
     answerRef.current = answerInput;
     
-    const el = useRef(null)
+    const inputElement = useRef<HTMLInputElement>(null);
 
     useEffect(()=>{
         const timer = setTimeout(() =>{
-            handleAnswerTimer(answerRef.current); 
-            el.current.value = '';
+            handleTimerSubmit(answerRef.current); 
+            inputElement.current!.value = '';
         }, 10000);
 
         return () => clearTimeout(timer);
@@ -93,7 +89,13 @@ const QuestionCard: React.FC<Props> = ({
             <QuestionNumber>{indexCurrentQuestion}/{totalQuestions}</QuestionNumber>
             <Question>
                 <Label>{currentQuestion?.country.toUpperCase()}</Label>
-                <Input ref={el} onChange={(e)=>{handleOnChange(e)}} type="text" onKeyDown={ (e) => {handleAnswerSubmit(e)}} autoFocus />
+                <Input 
+                    type="text" 
+                    ref={inputElement} 
+                    onChange={(e)=>{handleOnChange(e)}} 
+                    onKeyDown={ (e) => {handlePlayerSubmit(e)}} 
+                    autoFocus 
+                />
             </Question>
         </QuestionWrapper>
     )
