@@ -5,7 +5,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './components/HomePage';
 import styled from 'styled-components';
-import Quizs from './components/Quizs';
+import QuizList from './components/QuizList';
 import Quiz from './components/Quiz';
 
 const Main = styled.main`
@@ -24,7 +24,7 @@ const App: React.FC = () => (
       <Routes>
         <Route path="/classement" element={<Leaderboard />}/>
         <Route path="/quiz">
-          <Route index element={<Quizs />}/>
+          <Route index element={<QuizList />}/>
           <Route path=':quizId' element={<Quiz/>}/>    
         </Route>
         <Route path="/" element={<HomePage/>}/>

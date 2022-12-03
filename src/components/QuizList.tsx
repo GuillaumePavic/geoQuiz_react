@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Quiz from "../services/Quiz.service";
 
-const QuizList = styled.div`
+const QuizListWrapper = styled.div`
     width: 70vw;
     display: flex;
     justify-content: space-around;
@@ -14,10 +14,10 @@ const QuizCard = styled(Link)`
     border: 6px solid white;
     border-radius: 12px;
     display: block;
-    width: 240px;
-    height: 240px;
+    width: 200px;
+    height: 200px;
     text-align: center;
-    font-size: 48px;
+    font-size: 36px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -28,7 +28,7 @@ interface QuizListItem {
     continent: string
 }
 
-const Quizs: React.FC = () => {
+const QuizList: React.FC = () => {
     const [quizsList, setQuizsList] = useState<QuizListItem[]>();
 
     useEffect(()=>{
@@ -41,14 +41,14 @@ const Quizs: React.FC = () => {
             {!quizsList ? (
                 <div>Loading</div>
             ) : (
-            <QuizList>
+            <QuizListWrapper>
                 {quizsList.map(quiz => (
                     <QuizCard key={quiz.id} to={`/quiz/${quiz.continent}`}><div>{quiz.continent.toUpperCase()}</div></QuizCard>                  
                 ))}
-            </QuizList>
+            </QuizListWrapper>
             )}
         </React.Fragment>
     )
 }
 
-export default Quizs;
+export default QuizList;
