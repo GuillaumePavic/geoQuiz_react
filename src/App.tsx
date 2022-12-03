@@ -5,8 +5,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './components/HomePage';
 import styled from 'styled-components';
-import QuizList from './components/QuizList';
-import Quiz from './components/Quiz';
+import QuizList from './components/Quiz/QuizList';
+import Quiz from './components/Quiz/Quiz';
 
 const Main = styled.main`
   height: calc(100vh - 128px);

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Quiz from '../services/Quiz.service';
+import Quiz from '../../services/Quiz.service';
 import styled from "styled-components";
-import Answer_Data from "../Interfaces/Answer_data.interface";
-import Correction_data from "../Interfaces/Correction_data.interface";
-import Leaderboard_data from "../Interfaces/Leaderboard_data.interface";
+import Answer_Data from "../../Interfaces/Answer_data.interface";
+import Correction_data from "../../Interfaces/Correction_data.interface";
+import Leaderboard_data from "../../Interfaces/Leaderboard_data.interface";
 
 const Wrapper = styled.div`
     border: 6px solid white;

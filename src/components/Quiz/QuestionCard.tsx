@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled, { css, keyframes } from 'styled-components';
-import Quiz_data from '../Interfaces/Quiz_data.interface';
+import Quiz_data from '../../Interfaces/Quiz_data.interface';
 
 
 // const Wrapper = styled.div`

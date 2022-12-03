@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import LevelCard from "./LevelCard";
 import QuestionCard from "./QuestionCard";
 import Results from "./Results";
-import QuizServices from "../services/Quiz.service";
+import QuizServices from "../../services/Quiz.service";
 import { useParams } from 'react-router-dom';
-import Answer_Data from "../Interfaces/Answer_data.interface";
-import Quiz_data from "../Interfaces/Quiz_data.interface";
+import Answer_Data from "../../Interfaces/Answer_data.interface";
+import Quiz_data from "../../Interfaces/Quiz_data.interface";
 
 const Quiz: React.FC = () => {
     // Choose Level
