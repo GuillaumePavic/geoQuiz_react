@@ -7,6 +7,8 @@ import HomePage from './components/HomePage';
 import styled from 'styled-components';
 import QuizList from './components/Quiz/QuizList';
 import Quiz from './components/Quiz/Quiz';
+import NoMatch from './components/NoMatch';
+import NoMatchQuiz from './components/NoMatchQuiz';
 
 const Main = styled.main`
   height: calc(100vh - 128px);
@@ -25,10 +27,11 @@ const App: React.FC = () => (
         <Route path="/classement" element={<Leaderboard />}/>
         <Route path="/quiz">
           <Route index element={<QuizList />}/>
-          <Route path=':quizId' element={<Quiz/>}/>    
+          <Route path=':quizId' element={<Quiz/>}/>
         </Route>
         <Route path="/" element={<HomePage/>}/>
-        {/* <Route path="*" element={<NoMatch/>}/> */}
+        <Route path='/noquiz' element={<NoMatchQuiz/>}/> 
+        <Route path="*" element={<NoMatch/>}/>
       </Routes>
     </Main>
     <Footer/>

@@ -3,7 +3,7 @@ import LevelCard from "./LevelCard";
 import QuestionCard from "./QuestionCard";
 import Results from "./Results";
 import QuizServices from "../../services/Quiz.service";
-import { useParams } from 'react-router-dom';
+import { redirect, useNavigate, useParams } from 'react-router-dom';
 import Answer_Data from "../../Interfaces/Answer_data.interface";
 import Quiz_data from "../../Interfaces/Quiz_data.interface";
 
@@ -20,8 +20,12 @@ const Quiz: React.FC = () => {
 
     // Choose Level and set data for Quiz
     let { quizId } = useParams();
+    const navigate = useNavigate();
     const handleChooseClick = (level: string) => {
         const data = QuizServices.createQuizLocally(level, quizId!);
+        if(!data.length) {
+            navigate("/noquiz")
+        }
         setQuizData(data);
         setCurrentQuestion(data[0]);
         setTotalQuestions(data.length);

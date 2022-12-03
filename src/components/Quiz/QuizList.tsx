@@ -10,7 +10,7 @@ const QuizListWrapper = styled.div`
     justify-content: space-around;
 `;
 
-const QuizCard = styled(Link)`
+const QuizLink = styled(Link)`
     border: 6px solid white;
     border-radius: 12px;
     display: block;
@@ -43,7 +43,7 @@ const QuizList: React.FC = () => {
             ) : (
             <QuizListWrapper>
                 {quizsList.map(quiz => (
-                    <QuizCard key={quiz.id} to={`/quiz/${quiz.continent}`}><div>{quiz.continent.toUpperCase()}</div></QuizCard>                  
+                    <QuizLink key={quiz.id} to={`/quiz/${quiz.continent}`}><div>{quiz.continent.toUpperCase()}</div></QuizLink>                  
                 ))}
             </QuizListWrapper>
             )}
