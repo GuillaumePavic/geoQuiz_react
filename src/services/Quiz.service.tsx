@@ -5,16 +5,6 @@ import Quiz_data from '../Interfaces/Quiz_data.interface';
 
 export default class Quiz {
 
-    static getData(level: string) {
-        const data: Quiz_data[] = [
-            {id: 1, capital: "Paris", country:"France"},
-            {id: 2, capital: "Londres", country:"Royaume-Unis"},
-            // {id: 3, capital: "Berlin", country:"Allemagne"}
-        ];
-
-        return data;
-    }
-
     static calculScore = (answers: Answer_data[]) => {
         const corrections: Correction_data[] = [...answers];
         let score = 0;

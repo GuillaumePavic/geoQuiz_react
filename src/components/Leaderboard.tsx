@@ -28,6 +28,9 @@ const Table = styled.table`
     & tbody {
         width: 100%;
     }
+    & th{
+        width: 50%;
+    }
 `;
 
 const Leaderboard: React.FC = () => {

@@ -17,6 +17,7 @@ const Wrapper = styled.div`
     justify-content: space-around;
     align-items: center;
     font-size: 1.5rem;
+    font-family: TitiliumRegular, sans-serif;
 `;
 
 const Table = styled.table`
@@ -34,23 +35,33 @@ const Score = styled.div`
     }
 `;
 
+const Total = styled.div`
+    font-size: 2.5rem;
+    margin-bottom: 6px;
+`;
+
 const Button = styled.button`
+    color: palevioletred;
+    font-family: TitiliumRegular, sans-serif;
     font-size: 0.5em;
     padding: 0.25em 1em;
-    background: inherit;
-    color: white;
+    border: 1px solid palevioletred;
     border-radius: 3px;
     &:hover {
         cursor: pointer;
     }
 `;
 
+const StyledLink = styled(Link)`
+    font-family: TitiliumRegular, sans-serif;
+`;
+
 const TR = styled.tr`
     &.right {
-        background: green;
+        background: #6ad46a;
     }
     &.wrong {
-        background: palevioletred;
+        background: #db7093;
     }
 `;
 
@@ -98,7 +109,7 @@ const Results: React.FC<Props> = ({ answers, totalQuestions }) => {
                     return p2.totalScore - p1.totalScore;
                 });
             }
-            console.log(newLeaderboard)
+
             newLeaderboard = newLeaderboard.slice(0, 3);
 
             localStorage.setItem('leaderboard', JSON.stringify(newLeaderboard));
@@ -112,13 +123,13 @@ const Results: React.FC<Props> = ({ answers, totalQuestions }) => {
             ) : (
                 <Wrapper>
                 <Score>
-                    <div> Score: {totalScore}/{totalQuestions}</div>
+                    <Total> Score: {totalScore}/{totalQuestions}</Total>
                     {!displaySaveScore && (<Button onClick={()=>{handleDisplaySaveInput()}}>Enregistrez votre Score ?</Button>)}
                     {displaySaveScore && (
                         <div>
                             {!scoreSaved 
-                            ? (<input type="text" placeholder="Entrez votre nom" autoFocus onKeyDown={(e)=>{ handleSaveUserName(e) } }/>) 
-                            : (<Link to={"/classement"}>Classement</Link>)}
+                            ? (<input type="text" maxLength={21} placeholder="Entrez votre nom" autoFocus onKeyDown={(e)=>{ handleSaveUserName(e) } }/>) 
+                            : (<Button><StyledLink to={"/classement"}>Classement ?</StyledLink></Button>)}
                         </div>
                     )}
                 </Score>
@@ -140,7 +151,7 @@ const Results: React.FC<Props> = ({ answers, totalQuestions }) => {
                         ) )}
                     </tbody>
                 </Table>
-                <Link to={"/quiz"}>Nouveau Quiz ?</Link>
+                <Button><StyledLink to={"/quiz"}>Nouveau Quiz ?</StyledLink></Button> 
                 </Wrapper>
             )}
         </React.Fragment>

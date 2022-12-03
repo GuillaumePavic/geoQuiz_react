@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Footer = styled.footer`
+    font-size: 2rem;
     display: flex;
     justify-content: flex-end;
     padding: 1rem 2rem;
     position: absolute;
-    bottom: 0;
+    bottom: 12px;
     width: 100vw;
     height: 64px;
 `;
