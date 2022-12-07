@@ -8,8 +8,16 @@ export default class Quiz {
     static calculScore = (answers: Answer_data[]) => {
         const corrections: Correction_data[] = [...answers];
         let score = 0;
+
+        const cleanedText = (arg: string) => {
+            const cleanedText = arg.trim().toLowerCase().replace(/é|è|ê|ë/g, 'e').replace(/-| /, '');
+            
+            return cleanedText;
+        }
+
         for(const correction of corrections) {
-            if(correction.playerAnswer.trim().toLowerCase() === correction.capital.trim().toLocaleLowerCase()) {
+            // if(correction.playerAnswer.trim().toLowerCase() === correction.capital.trim().toLowerCase()) {
+            if(cleanedText(correction.playerAnswer) === cleanedText(correction.capital)) {
                 score++;
                 correction.display = 'right';
             } else {
