@@ -20,6 +20,11 @@ const QuestionWrapper = styled.div`
     position: relative;
     display: flex;
     flex-direction: column;
+    
+    @media (max-width: 1440px) {
+        border: none;
+        width: 90vw;
+    }
 `;
 
 const Question = styled.div`
@@ -49,6 +54,10 @@ const QuestionNumber = styled.div`
     top: 12px;
     right: 12px;
     font-size: 2rem;
+    
+    @media (max-width: 1440px) {
+        position: relative;
+    }
 `;
 
 const ProgressBarContainer = styled.div`
@@ -109,8 +118,8 @@ const QuestionCard: React.FC<Props> = ({
 
     return (
         <QuestionWrapper>
-            <QuestionNumber>{indexCurrentQuestion}/{totalQuestions}</QuestionNumber>
             <Question>
+            <QuestionNumber>{indexCurrentQuestion}/{totalQuestions}</QuestionNumber>
                 <Label>{currentQuestion?.country.toUpperCase()}</Label>
                 <Input 
                     type="text" 

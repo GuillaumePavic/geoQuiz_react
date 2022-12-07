@@ -18,6 +18,11 @@ const Wrapper = styled.div`
     & h1 {
         font-size: 3rem;
     }
+
+    @media (max-width: 1440px) {
+        border: none;
+        width: 90vw;
+    }
 `;
 
 const Table = styled.table`

@@ -7,7 +7,7 @@ const Wrapper = styled.div`
     width: 50vw;
     min-height: 500px;
     padding: 16px;
-    font-size: 1.5rem;
+    font-size: 24px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -15,6 +15,11 @@ const Wrapper = styled.div`
     & p {
         line-height: 36px;
         font-size: 1.2em;
+    }
+
+    @media (max-width: 1440px) {
+        border: none;
+        width: 90vw;
     }
 `;
 

@@ -18,6 +18,11 @@ const Wrapper = styled.div`
     align-items: center;
     font-size: 1.5rem;
     font-family: TitiliumRegular, sans-serif;
+
+    @media (max-width: 1440px) {
+        border: none;
+        width: 90vw;
+    }
 `;
 
 const Table = styled.table`

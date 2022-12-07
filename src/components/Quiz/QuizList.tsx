@@ -6,13 +6,15 @@ import Quiz from '../../services/Quiz.service';
 const QuizListWrapper = styled.div`
     width: 70vw;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
+    align-items: center;
 `;
 
 const QuizLink = styled(Link)`
     border: 6px solid white;
     border-radius: 12px;
-    display: block;
+    margin: 8px 4px;
     width: 200px;
     height: 200px;
     text-align: center;
@@ -20,6 +22,13 @@ const QuizLink = styled(Link)`
     display: flex;
     justify-content: space-around;
     align-items: center;
+
+    @media (max-width: 1440px) {
+        border: 4px solid white;
+        width: 100px;
+        height: 100px;
+        font-size: 16px;
+    }
 `;
 
 interface QuizListItem {
