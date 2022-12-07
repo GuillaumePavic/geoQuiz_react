@@ -8,8 +8,13 @@ const Wrapper = styled.div`
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 2.5rem;
-    width: 100%;
+    font-size: 32px;
+    width: 90vw;
+
+    @media (max-width: 425px) {
+        font-size: 16px;
+        height: 500px;
+    }
 `;
 
 const StyledLink = styled(Link)`
@@ -18,7 +23,7 @@ const StyledLink = styled(Link)`
 
 const NoMatch: React.FC = () =>{
     return (
-        <Wrapper>Il n&aposy a rien ici, vous cherchiez peut-être les <StyledLink to={'/quiz'}>quizs ?</StyledLink></Wrapper>
+        <Wrapper>Il n&apos;y a rien ici, vous cherchiez peut-être les <StyledLink to={'/quiz'}>quizs ?</StyledLink></Wrapper>
     )
 }
 

@@ -78,7 +78,7 @@
 {"id":78,"country":"Guyana","alpha_name":"Guyana","code":"GUY","article":"le","full_name":"République coopérative du Guyana","capital":"Georgetown","continent":"amerique","level":"difficult"},
 {"id":79,"country":"Haïti","alpha_name":"Haïti","code":"HTI","full_name":"République d'Haïti","capital":"Port-au-Prince","continent":"amerique","level":"medium"},
 {"id":80,"country":"Honduras","alpha_name":"Honduras","code":"HND","article":"le","full_name":"République du Honduras","capital":"Tégucigalpa","continent":"amerique","level":"difficult"},
-{"id":81,"country":"Hongrie","alpha_name":"Hongrie","code":"HUN","article":"la","full_name":"Hongrie","capital":"Budapest","continent":"asie","level":"easy"},
+{"id":81,"country":"Hongrie","alpha_name":"Hongrie","code":"HUN","article":"la","full_name":"Hongrie","capital":"Budapest","continent":"europe","level":"easy"},
 {"id":82,"country":"Inde","alpha_name":"Inde","code":"IND","article":"l'","full_name":"République de l'Inde","capital":"New Delhi","continent":"asie","level":"easy"},
 {"id":83,"country":"Indonésie","alpha_name":"Indonésie","code":"IDN","article":"l'","full_name":"République d'Indonésie","capital":"Jakarta","continent":"asie","level":"medium"},
 {"id":84,"country":"Irak","alpha_name":"Irak","code":"IRQ","article":"l'","full_name":"République d'Irak","capital":"Bagdad","continent":"asie","level":"easy"},

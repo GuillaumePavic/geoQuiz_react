@@ -17,6 +17,10 @@ const Main = styled.main`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 425px) {
+    height: auto;
+}
 `;
 
 const App: React.FC = () => (

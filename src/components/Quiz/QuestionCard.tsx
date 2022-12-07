@@ -2,15 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import Quiz_data from '../../Interfaces/Quiz_data.interface';
 
-
-// const Wrapper = styled.div`
-//     border: 6px solid white;
-//     border-radius: 12px;
-//     width: 50vw;
-//     min-height: 500px;
-//     padding: 16px;
-// `;
-
 const QuestionWrapper = styled.div`
     border: 6px solid white;
     border-radius: 12px;
@@ -20,21 +11,21 @@ const QuestionWrapper = styled.div`
     position: relative;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
     
     @media (max-width: 1440px) {
         border: none;
         width: 90vw;
     }
-`;
 
-const Question = styled.div`
-    width: 80%;
-    margin: auto;
-    text-align: center;
+    @media (max-width: 425px) {
+        font-size: 32px;
+    }
 `;
 
 const Label = styled.div`
-    font-size: 48px;
     margin-bottom: 24px;
 `;
 
@@ -46,14 +37,19 @@ const Input = styled.input`
     text-align: center;
     padding: 8px;
     border-radius: 5px;
-    font-size: 3rem;
+    font-size: 36px;
+
+    @media (max-width: 425px) {
+        width: 150px;
+        height: 64px;
+        font-size: 24px;
+    }
 `;
 
 const QuestionNumber = styled.div`
     position: absolute;
     top: 12px;
     right: 12px;
-    font-size: 2rem;
     
     @media (max-width: 1440px) {
         position: relative;
@@ -118,7 +114,6 @@ const QuestionCard: React.FC<Props> = ({
 
     return (
         <QuestionWrapper>
-            <Question>
             <QuestionNumber>{indexCurrentQuestion}/{totalQuestions}</QuestionNumber>
                 <Label>{currentQuestion?.country.toUpperCase()}</Label>
                 <Input 
@@ -130,7 +125,6 @@ const QuestionCard: React.FC<Props> = ({
             <ProgressBarContainer>
                 <ProgressBar key={Math.random()}></ProgressBar>
             </ProgressBarContainer>
-            </Question>
         </QuestionWrapper>
     )
 }

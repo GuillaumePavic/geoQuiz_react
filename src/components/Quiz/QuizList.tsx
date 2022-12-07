@@ -9,6 +9,10 @@ const QuizListWrapper = styled.div`
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
+
+    @media (max-width: 425px) {
+        margin: 16px 0;
+    }
 `;
 
 const QuizLink = styled(Link)`
@@ -28,6 +32,12 @@ const QuizLink = styled(Link)`
         width: 100px;
         height: 100px;
         font-size: 16px;
+    }
+
+    @media (max-width: 425px) {
+        flex-direction: column;
+        width: 70vw;
+        height: 100px;
     }
 `;
 

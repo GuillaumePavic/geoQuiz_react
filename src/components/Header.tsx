@@ -5,15 +5,18 @@ import styled from 'styled-components';
 const Header = styled.header`
     height: 64px;
     width: 100vw;
-    padding: 1rem 2rem;
-    font-size: 1.5em;  
+    padding: 6px 32px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
+
+    @media (max-width: 425px) {
+        justify-content: center;
+    }
 `;
 
 const Logo = styled.div`
-    font-size: 1.5rem;
+    font-size: 24px;
     font-weight: bold;
     `;
 

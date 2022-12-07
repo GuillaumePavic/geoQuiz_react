@@ -19,7 +19,7 @@ const Start = styled(Link)`
 `;
 
 const Img = styled.img`
-    width: 90%;
+    width: 80%;
 `;
 
 const HomePage: React.FC = () => {

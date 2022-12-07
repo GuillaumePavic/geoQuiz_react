@@ -21,22 +21,36 @@ const Wrapper = styled.div`
         border: none;
         width: 90vw;
     }
+
+    @media (max-width: 425px) {
+        font-size: 16px;
+    }
 `;
 
 const Button = styled.button`
     color: palevioletred;
-    font-size: 1em;
-    padding: 0.25em 1em;
+    font-size: 24px;
+    width: 120px;
+    height: 50px;
     border: 2px solid palevioletred;
     border-radius: 3px;
     &:hover {
         cursor: pointer;
+    }
+
+    @media (max-width: 425px) {
+        margin: 16px auto;
+        font-size: 16px;
     }
 `;
 
 const Buttons = styled.div`
     display: flex;
     justify-content: space-around;
+
+    @media (max-width: 425px) {
+        flex-direction: column;
+    }
 `;
 
 interface Props {
@@ -49,9 +63,9 @@ const LevelCard: React.FC<Props> = ({ handleChooseClick }) => {
     <Wrapper>
         <p>Pour chaque nom de pays, donnez le nom de la capitale et appuyer sur la touche entrée pour valider. </p>
         <Buttons>
-            <Button onClick={() => { handleChooseClick('easy') }}>Facile</Button>
-            <Button onClick={() => { handleChooseClick('medium') }}>Moyen</Button>
-            <Button onClick={() => { handleChooseClick('difficult') }}>Difficile</Button>
+            <Button onClick={() => { handleChooseClick('easy') }}><div>Facile</div></Button>
+            <Button onClick={() => { handleChooseClick('medium') }}><div>Moyen</div></Button>
+            <Button onClick={() => { handleChooseClick('difficult') }}><div>Difficile</div></Button>
         </Buttons>             
         <p>Attention au temps. Petite astuce: ne pas se soucier des accents et des majuscules.</p>
     </Wrapper>

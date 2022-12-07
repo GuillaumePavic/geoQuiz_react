@@ -23,6 +23,10 @@ const Wrapper = styled.div`
         border: none;
         width: 90vw;
     }
+
+    @media (max-width: 425px) {
+        font-size: 16px;
+    }
 `;
 
 const Table = styled.table`
@@ -47,18 +51,30 @@ const Total = styled.div`
 
 const Button = styled.button`
     color: palevioletred;
-    font-family: TitiliumRegular, sans-serif;
-    font-size: 0.5em;
-    padding: 0.25em 1em;
-    border: 1px solid palevioletred;
+    font-size: 18px;
+    width: 200px;
+    height: 50px;
+    border: 2px solid palevioletred;
     border-radius: 3px;
     &:hover {
         cursor: pointer;
+    }
+
+    @media (max-width: 425px) {
+        margin: 16px auto;
+        font-size: 16px;
     }
 `;
 
 const StyledLink = styled(Link)`
     font-family: TitiliumRegular, sans-serif;
+    
+`;
+
+const Input = styled.input`
+    font-size: 18px;
+    width: 200px;
+    height: 50px;
 `;
 
 const TR = styled.tr`
@@ -133,7 +149,7 @@ const Results: React.FC<Props> = ({ answers, totalQuestions }) => {
                     {displaySaveScore && (
                         <div>
                             {!scoreSaved 
-                            ? (<input type='text' maxLength={21} placeholder='Entrez votre nom' autoFocus onKeyDown={(e)=>{ handleSaveUserName(e) } }/>) 
+                            ? (<Input type='text' maxLength={21} placeholder='Entrez votre nom' autoFocus onKeyDown={(e)=>{ handleSaveUserName(e) } }/>) 
                             : (<Button><StyledLink to={'/classement'}>Classement ?</StyledLink></Button>)}
                         </div>
                     )}

@@ -7,10 +7,13 @@ const Footer = styled.footer`
     display: flex;
     justify-content: flex-end;
     padding: 1rem 2rem;
-    position: absolute;
-    bottom: 12px;
+    padding: 6px 32px;
     width: 100vw;
     height: 64px;
+
+    @media (max-width: 425px) {
+        justify-content: center;
+    }
 `;
 
 const FooterComponent: React.FC = () => {
