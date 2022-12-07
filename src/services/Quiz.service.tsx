@@ -8,12 +8,12 @@ export default class Quiz {
     static calculScore = (answers: Answer_data[]) => {
         const corrections: Correction_data[] = [...answers];
         let score = 0;
-        for(let correction of corrections) {
+        for(const correction of corrections) {
             if(correction.playerAnswer.trim().toLowerCase() === correction.capital.trim().toLocaleLowerCase()) {
                 score++;
-                correction.display = "right";
+                correction.display = 'right';
             } else {
-                correction.display = "wrong";
+                correction.display = 'wrong';
             }
         }  
         return {score, corrections};
@@ -21,11 +21,11 @@ export default class Quiz {
 
     static listQuizsLocally = () => {
         const categories = [
-            {id: 1, continent: "asie"},
-            {id: 2, continent: "europe"},
-            {id: 3, continent: "afrique"},
-            {id: 4, continent: "amerique"},
-            {id: 5, continent: "monde"}
+            {id: 1, continent: 'asie'},
+            {id: 2, continent: 'europe'},
+            {id: 3, continent: 'afrique'},
+            {id: 4, continent: 'amerique'},
+            {id: 5, continent: 'monde'}
         ];
 
         return categories;

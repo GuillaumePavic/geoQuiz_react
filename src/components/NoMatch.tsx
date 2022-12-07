@@ -18,7 +18,7 @@ const StyledLink = styled(Link)`
 
 const NoMatch: React.FC = () =>{
     return (
-        <Wrapper>Il n'y a rien ici, vous cherchiez peut-être les <StyledLink to={"/quiz"}>quizs ?</StyledLink></Wrapper>
+        <Wrapper>Il n&aposy a rien ici, vous cherchiez peut-être les <StyledLink to={'/quiz'}>quizs ?</StyledLink></Wrapper>
     )
 }
 

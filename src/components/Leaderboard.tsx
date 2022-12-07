@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import Leaderboard_data from "../Interfaces/Leaderboard_data.interface";
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import Leaderboard_data from '../Interfaces/Leaderboard_data.interface';
 
 const Wrapper = styled.div`
     border: 6px solid white;
@@ -50,7 +50,7 @@ const Leaderboard: React.FC = () => {
         <Wrapper>
             <h1>Classement</h1>
             {leaderboardEmpty ? (
-                <div>Pas de leader pour l'instant !</div>
+                <div>Pas de leader pour l&aposinstant !</div>
             ): (
                 <Table>
                     <thead>
@@ -60,8 +60,8 @@ const Leaderboard: React.FC = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {leaderboardData!.map(player => (
-                            <tr key={leaderboardData!.indexOf(player)}>
+                        {leaderboardData?.map(player => (
+                            <tr key={leaderboardData?.indexOf(player)}>
                                 <td>{player.username}</td>
                                 <td>{player.totalScore}</td>
                             </tr>
