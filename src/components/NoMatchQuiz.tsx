@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
     display: flex;
@@ -19,7 +19,7 @@ const StyledLink = styled(Link)`
 const NoMatchQuiz: React.FC = () => {
     return (
         <Wrapper>
-            Ce quiz n'existe pas, vous souhaitez peut-être vous rendre sur la liste des <StyledLink to={"/quiz"}>quizs ?</StyledLink>
+            Ce quiz n&aposexiste pas, vous souhaitez peut-être vous rendre sur la liste des <StyledLink to={'/quiz'}>quizs ?</StyledLink>
         </Wrapper>
     )
 }

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Quiz from '../../services/Quiz.service';
-import styled from "styled-components";
-import Answer_Data from "../../Interfaces/Answer_data.interface";
-import Correction_data from "../../Interfaces/Correction_data.interface";
-import Leaderboard_data from "../../Interfaces/Leaderboard_data.interface";
+import styled from 'styled-components';
+import Answer_Data from '../../Interfaces/Answer_data.interface';
+import Correction_data from '../../Interfaces/Correction_data.interface';
+import Leaderboard_data from '../../Interfaces/Leaderboard_data.interface';
 
 const Wrapper = styled.div`
     border: 6px solid white;
@@ -128,8 +128,8 @@ const Results: React.FC<Props> = ({ answers, totalQuestions }) => {
                     {displaySaveScore && (
                         <div>
                             {!scoreSaved 
-                            ? (<input type="text" maxLength={21} placeholder="Entrez votre nom" autoFocus onKeyDown={(e)=>{ handleSaveUserName(e) } }/>) 
-                            : (<Button><StyledLink to={"/classement"}>Classement ?</StyledLink></Button>)}
+                            ? (<input type='text' maxLength={21} placeholder='Entrez votre nom' autoFocus onKeyDown={(e)=>{ handleSaveUserName(e) } }/>) 
+                            : (<Button><StyledLink to={'/classement'}>Classement ?</StyledLink></Button>)}
                         </div>
                     )}
                 </Score>
@@ -142,7 +142,7 @@ const Results: React.FC<Props> = ({ answers, totalQuestions }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {corrections!.map( (correction: Correction_data) => ( 
+                        {corrections?.map( (correction: Correction_data) => ( 
                             <TR key={correction.id} className={correction.display}>
                                 <td>{correction.country}</td>
                                 <td>{correction.capital}</td>
@@ -151,7 +151,7 @@ const Results: React.FC<Props> = ({ answers, totalQuestions }) => {
                         ) )}
                     </tbody>
                 </Table>
-                <Button><StyledLink to={"/quiz"}>Nouveau Quiz ?</StyledLink></Button> 
+                <Button><StyledLink to={'/quiz'}>Nouveau Quiz ?</StyledLink></Button> 
                 </Wrapper>
             )}
         </React.Fragment>
@@ -159,9 +159,3 @@ const Results: React.FC<Props> = ({ answers, totalQuestions }) => {
 }
 
 export default Results;
-
-{/* <button>Enregistrez votre Score</button>
-<div>
-    <input type="text" placeholder="Entrez votre nom" onClick={()=>{ handleUserName(e) }}/>
-    <div>Link to Leaderboard</div>
-</div> */}

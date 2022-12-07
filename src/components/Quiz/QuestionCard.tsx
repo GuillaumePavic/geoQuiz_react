@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import styled, { css, keyframes } from 'styled-components';
+import React, { useEffect, useRef } from 'react';
+import styled, { keyframes } from 'styled-components';
 import Quiz_data from '../../Interfaces/Quiz_data.interface';
 
 

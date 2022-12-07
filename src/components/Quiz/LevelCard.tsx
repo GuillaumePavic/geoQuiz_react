@@ -1,14 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-// const Wrapper = styled.div`
-//     border: 6px solid white;
-//     border-radius: 12px;
-//     width: 50vw;
-//     min-height: 500px;
-//     padding: 16px;
-// `;
-
 const Wrapper = styled.div`
     border: 6px solid white;
     border-radius: 12px;
@@ -52,9 +44,9 @@ const LevelCard: React.FC<Props> = ({ handleChooseClick }) => {
     <Wrapper>
         <p>Pour chaque nom de pays, donnez le nom de la capitale et appuyer sur la touche entrée pour valider. </p>
         <Buttons>
-            <Button onClick={() => { handleChooseClick("easy") }}>Facile</Button>
-            <Button onClick={() => { handleChooseClick("medium") }}>Moyen</Button>
-            <Button onClick={() => { handleChooseClick("difficult") }}>Difficile</Button>
+            <Button onClick={() => { handleChooseClick('easy') }}>Facile</Button>
+            <Button onClick={() => { handleChooseClick('medium') }}>Moyen</Button>
+            <Button onClick={() => { handleChooseClick('difficult') }}>Difficile</Button>
         </Buttons>             
         <p>Attention au temps. Petite astuce: ne pas se soucier des accents et des majuscules.</p>
     </Wrapper>

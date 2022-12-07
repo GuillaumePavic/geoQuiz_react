@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import LevelCard from "./LevelCard";
-import QuestionCard from "./QuestionCard";
-import Results from "./Results";
-import QuizServices from "../../services/Quiz.service";
-import { redirect, useNavigate, useParams } from 'react-router-dom';
-import Answer_Data from "../../Interfaces/Answer_data.interface";
-import Quiz_data from "../../Interfaces/Quiz_data.interface";
+import React, { useState } from 'react';
+import LevelCard from './LevelCard';
+import QuestionCard from './QuestionCard';
+import Results from './Results';
+import QuizServices from '../../services/Quiz.service';
+import { useNavigate, useParams } from 'react-router-dom';
+import Answer_Data from '../../Interfaces/Answer_data.interface';
+import Quiz_data from '../../Interfaces/Quiz_data.interface';
 
 const Quiz: React.FC = () => {
     // Choose Level
@@ -19,12 +19,12 @@ const Quiz: React.FC = () => {
     const [endOfQuiz, setEndOfQuiz] = useState(false);
 
     // Choose Level and set data for Quiz
-    let { quizId } = useParams();
+    const { quizId } = useParams();
     const navigate = useNavigate();
     const handleChooseClick = (level: string) => {
         const data = QuizServices.createQuizLocally(level, quizId!);
         if(!data.length) {
-            navigate("/noquiz")
+            navigate('/noquiz')
         }
         setQuizData(data);
         setCurrentQuestion(data[0]);
