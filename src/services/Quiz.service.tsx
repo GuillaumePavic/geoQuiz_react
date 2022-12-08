@@ -16,7 +16,6 @@ export default class Quiz {
         }
 
         for(const correction of corrections) {
-            // if(correction.playerAnswer.trim().toLowerCase() === correction.capital.trim().toLowerCase()) {
             if(cleanedText(correction.playerAnswer) === cleanedText(correction.capital)) {
                 score++;
                 correction.display = 'right';
@@ -50,9 +49,11 @@ export default class Quiz {
             filteredData = data.filter(el => el.level === level && el.continent === category);
         }
 
-        let randomizedData = [...filteredData].sort(() => 0.5 - Math.random());
-        randomizedData = randomizedData.slice(0, n);
-        
+        const randomizedData = [];
+        for(let i = 0 ; i < n; i++) {
+            randomizedData.push(filteredData[Math.floor(Math.random() * filteredData.length)])
+        }
+
         const formattedData: Quiz_data[] = randomizedData.map(el => {
             return {
                 id: el.id, 
