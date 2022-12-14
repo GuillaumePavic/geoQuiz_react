@@ -5,12 +5,12 @@ import App from './App'
 import GlobalStyle from './theme/globalStyles';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  // <React.StrictMode>
+  <React.StrictMode>
   <React.Fragment>
     <GlobalStyle/>
     <Router>
       <App />
     </Router>
   </React.Fragment>
-  // </React.StrictMode>
+  </React.StrictMode>
 )
